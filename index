@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayanihan Lab Network | Professional Collaboration & Good Governance</title>
+    <link rel="icon" href="1.png" type="image/png">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #5F36A0;  /* Purple from the brochure */
+            --secondary: #0077B5; /* Blue from the brochure */
+            --accent: #E67E22;    /* Orange accent */
+            --light: #FFFFFF;     /* White background */
+            --dark: #2C3E50;
+            --highlight: #006A9F; /* Darker blue for buttons */
+            --gray: #f9f9f9;      /* Light gray for sections */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* Header */
+        #header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        #header.scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px; /* For fixed header */
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            margin: 0 0.5rem 1rem 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Programs Section */
+        #programs {
+            padding: 5rem 0;
+            background-color: var(--gray);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Articles Section */
+        #articles {
+            padding: 5rem 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 0;
+            background-color: var(--gray);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Smart City Section */
+        #smart-city {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                padding-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container navbar">
+            <a href="#" class="logo">
+                <img src="1.png" alt="Bayanihan Lab Network Logo">
+                <span>Bayanihan Lab Network</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#articles">Nation Building</a></li>
+                <li><a href="#smart-city">Smart City Summit</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>Empowering Communities Through Good Governance</h1>
+            <p>Bayanihan Lab builds sustainable programs and collaborations that strengthen communities, foster innovation, and promote transparency in governance.</p>
+            <div>
+                <a href="#programs" class="btn">Our Programs</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Bayanihan Lab Network</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <h3>Our Vision</h3>
+                    <p>Driving innovation and collaboration through the spirit of Bayanihan.</p>
+                    <p>Bayanihan Lab Network is dedicated to building sustainable community programs that uplift society through the principles of good governance, transparency, and accountability. We create innovative solutions to address complex social challenges by fostering collaboration among government, private sector, and civil society.</p>
+                    <p>Our approach combines traditional Filipino values of community cooperation (Bayanihan) with modern methodologies and technologies to create future-proof initiatives that endure and adapt to changing needs and contexts.</p>
+                    <a href="#programs" class="btn">Explore Our Programs</a>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="About Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs">
+        <div class="container">
+            <h2 class="section-title">Our Programs</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/250" alt="Digital Governance Initiative">
+                    </div>
+                    <div class="card-content">
+                        <h3>Digital Governance Initiative</h3>
+                        <p>Implementing digital solutions that enhance transparency, accessibility, and efficiency in public service delivery, creating more responsive government systems.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/250" alt="Community Empowerment Program">
+                    </div>
+                    <div class="card-content">
+                        <h3>Community Empowerment Program</h3>
+                        <p>Building capacity within communities to participate in governance, decision-making processes, and implementation of local development initiatives.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/250" alt="Governance Innovation Lab">
+                    </div>
+                    <div class="card-content">
+                        <h3>Governance Innovation Lab</h3>
+                        <p>Creating an environment for experimentation, co-creation, and testing of new approaches to governance challenges and public service delivery.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles -->
+    <section id="articles">
+        <div class="container">
+            <h2 class="section-title">Nation Building Stories</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/250" alt="Youth Governance Academy">
+                    </div>
+                    <div class="card-content">
+                        <h3>Youth Governance Academy</h3>
+                        <p>Our Youth Governance Academy has trained over 500 young Filipinos in principles of good governance, public policy, and community organization.</p>
+                        <a href="#" class="btn">Read Full Story</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/250" alt="Transparent Budgeting Portal">
+                    </div>
+                    <div class="card-content">
+                        <h3>Transparent Budgeting Portal</h3>
+                        <p>Working with Quezon City local government, we developed a user-friendly budget transparency portal that visualizes public spending in an accessible way.</p>
+                        <a href="#" class="btn">Read Full Story</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <img src="/api/placeholder/400/250" alt="Digital Village Initiative">
+                    </div>
+                    <div class="card-content">
+                        <h3>Digital Village Initiative</h3>
+                        <p>We've brought reliable internet connectivity and digital literacy training to 12 remote communities in Eastern Samar.</p>
+                        <a href="#" class="btn">Read Full Story</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Smart City Summit Section -->
+    <section id="smart-city">
+        <div class="container">
+            <h2 class="section-title">Smart City Summit & Expo</h2>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <p>Join the 2025 Philippine Delegation to the Kaohsiung Smart City Summit & Expo</p>
+            </div>
+            
+            <div style="background-color: var(--primary); color: white; border-radius: 10px; padding: 2rem; margin-bottom: 2rem;">
+                <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="color: white; font-size: 2rem; margin-bottom: 1rem;">2025 SMART CITY SUMMIT & EXPO</h3>
+                        <p style="color: rgba(255, 255, 255, 0.9);">MARCH 18-22 (Tuesday to Saturday)</p>
+                        <p style="color: rgba(255, 255, 255, 0.9);">City Learning Expedition for Smart City Innovation and Governance</p>
+                        <a href="#contact" class="btn" style="background-color: var(--accent); border-color: var(--accent);">Join Our Delegation</a>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <img src="/api/placeholder/500/300" alt="Smart City Summit" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Smart City Technologies</h3>
+                        <p>Explore real-world applications including intelligent transportation systems, net-zero computation, and renewable energy integration.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Taiwan's Success Model</h3>
+                        <p>Learn from Taiwan's achievements in AI governance, energy-efficient infrastructure, and semiconductor industry development.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Sustainable Partnerships</h3>
+                        <p>Establish long-term collaborative relationships between Taiwan and the Philippines to drive sustainable urban progress.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#contact" class="btn">Register for the Summit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form action="#" class="contact-form">
+                <input type="text" placeholder="Name" class="form-control">
+                <input type="email" placeholder="Email" class="form-control">
+                <textarea placeholder="Your Message"></textarea>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bayanihan Lab Network. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
